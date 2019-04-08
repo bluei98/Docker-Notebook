@@ -9,7 +9,7 @@ RUN apt-get install -y tzdata
 RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
 # 기본 패키지 설치
-RUN apt-get install -y gcc make telnet whois vim git gettext cron mysql-client iputils-ping net-tools wget curl net-tools
+RUN apt-get install -y gcc make telnet whois vim git gettext cron mysql-client iputils-ping net-tools wget curl libconfig net-tools 
 
 # Python 설치
 RUN apt-get install -y python3 python3-pip
@@ -23,10 +23,18 @@ RUN mkdir /php
 
 # 라이브러리 설치
 RUN pip3 install flask beautifulsoup4 Pillow requests pandas selenium Image matplotlib OpenCV-Python tensorflow scikit-learn keras 
+
+# PhantomJS 설치
+RUN mkdir -p /root/src && cd /root/src
+RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+RUN tar jxvf phantomjs-2.1.1-linux-x86_64.tar.bz2
+RUN cp phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin
+RUN apt install -y fonts-nanum*
+RUN rm -rf /root/src/*
+
+# Install Jupytern notebook & javascript and css files
 RUN pip3 install Jupyter
 RUN pip3 install jupyter_contrib_nbextensions
-
-# Install Jupytern notebook javascript and css files
 RUN jupyter contrib nbextension install --user
 
 # Install PHP7 Kernel
