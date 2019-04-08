@@ -9,7 +9,7 @@ RUN apt-get install -y tzdata
 RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
 # 기본 패키지 설치
-RUN apt-get install -y gcc make telnet whois vim git gettext cron mysql-client iputils-ping net-tools wget curl libconfig net-tools 
+RUN apt-get install -y gcc make telnet whois vim git gettext cron mysql-client iputils-ping net-tools wget curl net-tools 
 
 # Python 설치
 RUN apt-get install -y python3 python3-pip
